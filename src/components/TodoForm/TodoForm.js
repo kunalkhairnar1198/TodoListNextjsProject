@@ -18,6 +18,8 @@ const TodoForm = (props) => {
         }
       
         props.onAddTodo(todoObj)
+
+        todoTextRef.current.value=''
     }
 
     const navigateRoute =()=>{

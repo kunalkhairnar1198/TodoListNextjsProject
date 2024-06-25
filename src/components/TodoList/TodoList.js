@@ -5,14 +5,7 @@ import TodoForm from '../TodoForm/TodoForm';
 
 const TodoList = (props) => {
   const [isVisible, setIsVisible] = useState(false)
-  const dummytodo = [
-    {
-      title: 'ramm'
-    },
-    {
-      title: 'kunal'
-    }
-  ]
+ 
   const switchhandler =()=>{
     setIsVisible(prev => !prev)
   }
@@ -22,17 +15,30 @@ const TodoList = (props) => {
     console.log('evente trigger')
   }
 
-  const addTodoHandler=(data)=>{
-    console.log(data)
+  const addTodoHandler=async(data)=>{
+
+  
+   const res = await fetch('/api/new-todos',{
+      method:'POST',
+      body:JSON.stringify(data),
+      headers:{
+        'Content-Type':'application/json' 
+      }      
+    });
+    const result = await res.json();
+    console.log(result)
+   
+    
+    setIsVisible(false);
   }
 
   return (
     <ul className={classes.list}>
 
-    {dummytodo.map((item, index) => (
+    {props.todos.map((item,index) => (
       <TodoItem
         key={index}
-        id={index}
+        id={item.id}
         title={item.title}
       />
      ))} 
