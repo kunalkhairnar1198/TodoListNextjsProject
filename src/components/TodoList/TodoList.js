@@ -32,6 +32,8 @@ const TodoList = (props) => {
     setIsVisible(false);
   }
 
+  console.log(props)
+
   return (
     <ul className={classes.list}>
 
@@ -40,7 +42,9 @@ const TodoList = (props) => {
         key={index}
         id={item.id}
         title={item.title}
-      />
+        description={item.description}
+        isCompleted={item.isCompleted}
+        />
      ))} 
       {isVisible && <TodoForm onAddTodo={addTodoHandler} onCancel={cancelFormHandler}/>}
     {!isVisible && <div>

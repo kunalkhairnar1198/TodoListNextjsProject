@@ -31,6 +31,8 @@ export async function getStaticProps(){
         props:{
           todos: todos.map(todo =>({
             title:todo.title,
+            description:todo.description,
+            isCompleted:todo.isComplete,
             id:todo._id.toString()
           }))
         },
