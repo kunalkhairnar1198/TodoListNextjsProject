@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import classes from './Todolist.module.css';
 import TodoItem from './TodoItem';
 import TodoForm from '../TodoForm/TodoForm';
+import { useRouter } from 'next/router';
 
 const TodoList = (props) => {
   const [isVisible, setIsVisible] = useState(false)
- 
+  const route = useRouter()
+  console.log(route)
   const switchhandler =()=>{
     setIsVisible(prev => !prev)
   }
@@ -27,7 +29,7 @@ const TodoList = (props) => {
     });
     const result = await res.json();
     console.log(result)
-   
+    route.replace('/')
     
     setIsVisible(false);
   }

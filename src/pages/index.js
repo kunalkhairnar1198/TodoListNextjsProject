@@ -1,9 +1,11 @@
 import Head from "next/head";
 import TodoList from "@/components/TodoList/TodoList";
 import { MongoClient } from "mongodb";
+import { useEffect } from "react";
 
 
  function Home(props) {
+ 
   console.log(props)
   return (
     <>

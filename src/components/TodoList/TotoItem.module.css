@@ -35,7 +35,7 @@
 }
 
 .actions button {
-  background-color: rgb(216, 114, 83);
+  background-color: rgb(231, 82, 37);
   border: none;
   color: white;
   padding: 0.5rem 1rem;
@@ -46,5 +46,5 @@
 }
 
 .actions button:hover {
-  background-color: rgb(233, 90, 55);
+  background-color: rgb(243, 115, 83);
 }

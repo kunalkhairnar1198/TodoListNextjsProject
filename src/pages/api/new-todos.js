@@ -20,9 +20,7 @@ async function handler(req, res){
 
         res.status(201).json({message:'Todos inserted! '})
 
-    }else if(req.method === 'PATCH') {
-        
-      if (req.method === 'PATCH') {
+    }else if (req.method === 'PATCH') {
         const { id, isComplete } = req.body;
     
         const client = await MongoClient.connect(
@@ -44,7 +42,24 @@ async function handler(req, res){
         } else {
           res.status(200).json({ message: 'Todo status updated!' });
         }
-      }
+      }else if(req.method === 'PUT'){
+          const id = req.body;
+
+          const client = await MongoClient.connect(
+            'mongodb+srv://kunalk200:aRKDhhPdiQFpJdkU@cluster0.4vczsp6.mongodb.net/todos?retryWrites=true&w=majority&appName=Cluster0'
+          );
+          const db = client.db();
+          const deletedTodo = db.collection('todos')
+
+          const result = await deletedTodo.deleteOne(
+            {_id:new ObjectId(id)}
+          )
+
+          if(result.modifiedCount === 0){
+            res.status(500).json({message:'failed to delete'})
+          }else{
+            res.status(200).json({message:'delete todos'})
+          }
       }
     
 }

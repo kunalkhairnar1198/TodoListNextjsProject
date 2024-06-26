@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import Card from '../ui/Card'
 import classes from './TotoItem.module.css'
-import TodoForm from '../TodoForm/TodoForm'
-import Link from 'next/link'
+import { useRouter } from 'next/router';
 
 const TodoItem = (props) => {
   const [isComplete, setIsComplete] = useState(props.isCompleted);
 console.log(props)
+const rout = useRouter()
 
   const toggleCompleteHandler = async () => {
     const updatedStatus = !isComplete;
@@ -32,8 +32,20 @@ console.log(props)
         // router.push('/' + props.id)
       }
 
-      const deletTodoHandler =()=>{
-
+      const deletTodoHandler =async(id)=>{
+        const res = await fetch('/api/new-todos',{
+          method:'PUT',
+          body:JSON.stringify(id),
+          headers:{
+            'Content-Type':'application/json'
+          }
+        })
+        
+        if(res.ok){
+        rout.replace('/')
+          console.log('delete the todo',res)
+        }
+        console.log(id)
       }
       
       const textStyle = {
@@ -55,7 +67,7 @@ console.log(props)
             <p className={classes.desc} style={textStyle}>{props.description}</p>
           </div>
           <div className={classes.actions}>
-            <button onClick={deletTodoHandler}>Delete</button>
+            <button onClick={()=>deletTodoHandler(props.id)}>Delete</button>
           </div>
         </div>
       </Card>
