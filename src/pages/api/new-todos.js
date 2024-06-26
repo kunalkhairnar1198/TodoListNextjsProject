@@ -1,4 +1,4 @@
-import {MongoClient} from 'mongodb';
+import {MongoClient, ObjectId} from 'mongodb';
 
 async function handler(req, res){
 
@@ -22,10 +22,11 @@ async function handler(req, res){
 
     }else if(req.method === 'PATCH') {
         
+      if (req.method === 'PATCH') {
         const { id, isComplete } = req.body;
-
+    
         const client = await MongoClient.connect(
-            'mongodb+srv://kunalk200:aRKDhhPdiQFpJdkU@cluster0.4vczsp6.mongodb.net/todos?retryWrites=true&w=majority&appName=Cluster0'
+          'mongodb+srv://kunalk200:aRKDhhPdiQFpJdkU@cluster0.4vczsp6.mongodb.net/todos?retryWrites=true&w=majority&appName=Cluster0'
         );
     
         const db = client.db();
@@ -43,6 +44,7 @@ async function handler(req, res){
         } else {
           res.status(200).json({ message: 'Todo status updated!' });
         }
+      }
       }
     
 }
