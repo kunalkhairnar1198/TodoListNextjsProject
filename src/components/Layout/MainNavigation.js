@@ -14,6 +14,9 @@ const MainNavigation = () => {
           <li>
             <Link href='/Add-newtodo'> + Add new Todo</Link>
           </li>
+          <li>
+            <Link href='/completed-task'> CompletedTask</Link>
+          </li>
         </ul>
       </nav>
     </header>
